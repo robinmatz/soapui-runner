@@ -1,0 +1,31 @@
+name: build_docker_image
+
+on:
+  push:
+    # Publish `master` as Docker `latest` image.
+    branches:
+      - selenium-extension
+
+    # Publish `v1.2.3` tags as releases.
+    tags: 
+      - '*'
+
+env:
+  IMAGE_NAME: robinmatz/soapui-runner:selenium
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository 
+        uses: actions/checkout@v2
+      - name: Build image  
+        run:
+          docker build -t $IMAGE_NAME .
+      - name: Run basic test
+          docker run -i --rm -v ${PWD}/test:/opt/soapui/projects -v ${PWD}/test/reports:/opt/soapui/projects/reports $IMAGE_NAME -r -j -J -f /opt/soapui/projects/reports -I "/opt/soapui/projects/SampleProject.xml"
+      - name: Upload Job Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: reports
+          path: test/

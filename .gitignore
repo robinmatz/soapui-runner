@@ -1,0 +1,7 @@
+### IDE ###
+.vscode
+
+### SoapUI outputs ###
+**/global-groovy.log
+**/soapui-errors.log
+**/soapui.log
