@@ -23,6 +23,7 @@ jobs:
         run:
           docker build -t $IMAGE_NAME .
       - name: Run basic test
+        run:
           docker run -i --rm -v ${PWD}/test:/opt/soapui/projects -v ${PWD}/test/reports:/opt/soapui/projects/reports $IMAGE_NAME -r -j -J -f /opt/soapui/projects/reports -I "/opt/soapui/projects/SampleProject.xml"
       - name: Upload Job Artifacts
         uses: actions/upload-artifact@v2
