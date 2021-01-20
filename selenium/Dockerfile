@@ -27,7 +27,7 @@ RUN apt-get install -y google-chrome-stable
 # Install chromedriver
 RUN apt-get install -yqq unzip
 RUN wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip
-RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/er
+RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 
 # Set display port to avoid crash
 ENV DISPLAY=:99
@@ -36,4 +36,4 @@ ENV DISPLAY=:99
 ENV PATH ${PATH}:/opt/SoapUI/bin
 
 WORKDIR /opt/SoapUI/bin
-ENTRYPOINT ["testrunner.sh", "PPATH_TO_DRIVER=/usr/local/bin"]
+ENTRYPOINT ["testrunner.sh"]

@@ -24,7 +24,7 @@ jobs:
           docker build -f ${PWD}/selenium/Dockerfile -t $IMAGE_NAME .
       - name: Run basic test
         run:
-          docker run -i --rm -v ${PWD}/test:/opt/soapui/projects -v ${PWD}/test/reports:/opt/soapui/projects/reports $IMAGE_NAME -r -j -J -f /opt/soapui/projects/reports -I "/opt/soapui/projects/SampleProject.xml"
+          docker run -i --rm -v ${PWD}/test:/opt/soapui/projects -v ${PWD}/test/reports:/opt/soapui/projects/reports $IMAGE_NAME -r -j -J -f /opt/soapui/projects/reports -PPATH_TO_DRIVER=/usr/local/bin -I "/opt/soapui/projects/SampleProject.xml"
       - name: Upload Job Artifacts
         uses: actions/upload-artifact@v2
         with:
