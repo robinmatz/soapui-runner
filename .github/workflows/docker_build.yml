@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Build image  
         run:
-          docker build -t $IMAGE_NAME .
+          docker build -f ${PWD}/selenium/Dockerfile -t $IMAGE_NAME .
       - name: Run basic test
         run:
           docker run -i --rm -v ${PWD}/test:/opt/soapui/projects -v ${PWD}/test/reports:/opt/soapui/projects/reports $IMAGE_NAME -r -j -J -f /opt/soapui/projects/reports -I "/opt/soapui/projects/SampleProject.xml"
