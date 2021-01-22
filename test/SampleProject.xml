@@ -347,6 +347,7 @@ declare namespace ns1='http://tempuri.org/';
   "userStatus": 0
 }</con:request><con:originalUri>https://petstore.swagger.io/v2/user</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="2105ac75-ae45-4b7a-85e9-09fa0b2a8725" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="6d0e754d-8449-484a-9ddb-82caf1d090ee" name="Selenium TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="157dd94b-ac02-41c3-bd6a-405976c63a85" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Verify Title" searchProperties="true"><con:settings/><con:testStep type="groovy" name="Verify browser title" id="eb129412-22ea-4804-951c-b703dd27c278"><con:settings/><con:config><script>import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeOptions
 
 def driver = null
 
@@ -354,8 +355,12 @@ try {
 
     System.setProperty("webdriver.chrome.driver", testRunner.testCase.testSuite.project.getPropertyValue("PATH_TO_DRIVER"))
     System.setProperty("webdriver.chrome.verboseLogging", "true")
+
+    def options = new ChromeOptions()
+    options.addArguments("--no-sandbox")
     
-    driver = new ChromeDriver()
+    driver = new ChromeDriver(options)
+    
     driver.get("https://www.google.com/")
 
     assert driver.getTitle() == "Google"
