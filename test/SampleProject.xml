@@ -352,7 +352,9 @@ def driver = null
 
 try {
 
-    System.setProperty("webdriver.chrome.driver", context.testRunner.testCase.testSuite.project.getPropertyValue("PATH_TO_DRIVER"))
+    System.setProperty("webdriver.chrome.driver", testRunner.testCase.testSuite.project.getPropertyValue("PATH_TO_DRIVER"))
+    System.setProperty("webdriver.chrome.verboseLogging", "true")
+    
     driver = new ChromeDriver()
     driver.get("https://www.google.com/")
 
@@ -360,8 +362,9 @@ try {
     
 } catch (Exception e) {
     
-    log.error("An error occurred at " + testRunner.testCase.name + " : " + e.getCause())
-
+    log.error("An error occurred at " + testRunner.testCase.name + " : " + e.getMessage())
+    testRunner.fail()
+    
 } finally {
     
     if (driver != null) {
