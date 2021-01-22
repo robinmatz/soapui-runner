@@ -355,9 +355,10 @@ try {
 
     System.setProperty("webdriver.chrome.driver", testRunner.testCase.testSuite.project.getPropertyValue("PATH_TO_DRIVER"))
     System.setProperty("webdriver.chrome.verboseLogging", "true")
+    System.setProperty("webdriver.chrome.whitelistedIps", "")
 
-    def options = new ChromeOptions()
-    options.addArguments("--no-sandbox")
+    /*def options = new ChromeOptions()
+    options.addArguments("--no-sandbox")*/
     
     driver = new ChromeDriver(options)
     
