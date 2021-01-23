@@ -2,9 +2,8 @@ name: build_docker_image
 
 on:
   push:
-    # Publish `master` as Docker `latest` image.
     branches:
-      - actions-integration
+      - '*'
 
     # Publish `v1.2.3` tags as releases.
     tags: 
