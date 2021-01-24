@@ -9,7 +9,7 @@ RUN mkdir -p /opt &&\
     | gunzip -c - | tar -xf - -C /opt && \
     ln -s /opt/SoapUI-${SOAPUI_VERSION} /opt/SoapUI
 
-# Place add jar files to SoapUI classpath
+# Add jar files to SoapUI classpath
 COPY selenium/ext /opt/SoapUI/bin/ext
 
 # Remove old guava version
