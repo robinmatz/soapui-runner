@@ -37,7 +37,7 @@ The ``-f argument`` lets you specify the output folder of your test reports. Not
 Last, the ``-I argument`` requires the path to the soapui-project.xml file. This path also refers to the path in the **docker container**.
 
 ### Selenium Extension
-If you run this image with the ``selenium`` tag, you can execute Selenium scripts in SoapUI. For now, there is only the possibility to run Selenium scripts with Google Chrome and ChromeDriver. 
+If you run this image with the ``5.5.0-selenium`` tag, you can execute Selenium scripts in SoapUI. For now, there is only the possibility to run Selenium scripts with Google Chrome and ChromeDriver. 
 
 The easiest way is to set the path to the chromedriver executable as a project variable in SoapUI. Then, in your script, use
 ```
@@ -55,7 +55,7 @@ The above example will the look like this
 docker run -i -rm \
     -v ${PWD}:/opt/soapui/projects \
     -v ${PWD}/reports:/opt/soapui/projects/reports \
-    robinmatz/soapui-runner:latest \
+    robinmatz/soapui-runner:5.5.0-selenium \
     -r -j -f /opt/soapui/projects/reports \
     -PPATH_TO_DRIVER=/usr/local/bin/chromedriver \
     -I "/opt/soapui/projects/sample-soapui-project.xml"
